@@ -1,0 +1,6 @@
+[submodule "Libft"]
+	path = Libft
+	url = https://github.com/Draxuxe/Libft
+[submodule "Get_next_line"]
+	path = Get_next_line
+	url = https://github.com/Draxuxe/Get_next_line
