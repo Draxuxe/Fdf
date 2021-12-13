@@ -31,6 +31,7 @@ SRC_NAME = main.c                               \
 		Vectors/vectors.c                       \
 		Utils/parsing_utils.c                   \
 		Utils/check_utils.c                     \
+		Utils/z_utils.c                         \
 		../Get_next_line/get_next_line.c        \
 		../Get_next_line/get_next_line_utils.c
 
