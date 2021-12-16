@@ -29,6 +29,7 @@ INCDIR = Includes
 SRC_NAME = main.c                               \
 		Parsing/parser.c                        \
 		Vectors/vectors.c                       \
+		Convert/convert.c                       \
 		Utils/parsing_utils.c                   \
 		Utils/check_utils.c                     \
 		Utils/z_utils.c                         \
@@ -71,6 +72,7 @@ obj:
 	@mkdir -p $(OBJ_PATH)/utils
 	@mkdir -p $(OBJ_PATH)/parsing
 	@mkdir -p $(OBJ_PATH)/vectors
+	@mkdir -p $(OBJ_PATH)/convert
 	@echo "$(SUCCESS)Objects folder created successfully$(NOC)"
 
 $(OBJ_PATH)%.o:$(SRC_PATH)%.c

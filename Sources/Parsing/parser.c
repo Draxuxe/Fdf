@@ -20,10 +20,8 @@ static t_map	*create_map(void)
 	if (!map)
 	{
 		free(map);
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
-	map->z_min = 0;
-	map->z_max = 0;
 	return (map);
 }
 

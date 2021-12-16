@@ -12,7 +12,7 @@
 
 #include "../../Includes/fdf.h"
 
-static size_t	vec_length(t_vec3 **a)
+size_t	vec_length(t_vec3 **a)
 {
 	size_t	i;
 

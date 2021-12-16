@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:28:05 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/13 16:57:50 by lfilloux         ###   ########.fr       */
+/*   Updated: 2021/12/16 17:32:56 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ typedef struct s_map
 	int		height;
 	t_vec3	**vectors;
 	t_point	**coords;
-	int		z_min;
-	int		z_max;
 }				t_map;
 
 /* Fonction sources */
@@ -63,5 +61,7 @@ t_vec3	**join_vectors(t_vec3 **vectors, t_vec3 **c, t_map *map);
 size_t	split_size(char **s);
 int		ft_atoi_base(char *s);
 void	verify_vec(t_vec3 *v);
+size_t	vec_length(t_vec3 **a);
+void	convert_vec3(t_map **map);
 
 #endif
