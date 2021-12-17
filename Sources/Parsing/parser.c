@@ -6,11 +6,13 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 10:02:30 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/13 16:14:28 by lfilloux         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:14:22 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/fdf.h"
+#include <stdio.h>
+#include <time.h>
 
 static t_map	*create_map(void)
 {
@@ -34,9 +36,11 @@ static t_vec3	**parse_line(char *line, int y)
 
 	if (!line)
 		return (NULL);
-	i = 0;
 	s = ft_split(line, ' ');
-	vectors = (t_vec3 **)malloc(sizeof(t_vec3 *) * (split_size(s) + 1));
+	i = 0;
+	vectors = malloc(sizeof(t_vec3 *) * (split_size(s) + 1));
+	if (!vectors)
+		return (NULL);
 	while (s[i])
 	{
 		tmp = get_z_vec(i, y, s[i]);
@@ -58,12 +62,10 @@ static t_map	*get_map(int fd)
 	t_vec3	**vectors;
 	char	*line;
 
+	line = get_next_line(fd);
 	map = create_map();
 	map->height = 0;
-	line = get_next_line(fd);
 	vectors = parse_line(line, map->height);
-	if (!vectors)
-		return (map);
 	map->height++;
 	while (line)
 	{
@@ -98,5 +100,6 @@ t_map	*ft_parse_map(char *filename)
 		exit (EXIT_FAILURE);
 	}
 	close (fd);
+	convert_vec3(&map);
 	return (map);
 }

@@ -30,9 +30,11 @@ SRC_NAME = main.c                               \
 		Parsing/parser.c                        \
 		Vectors/vectors.c                       \
 		Convert/convert.c                       \
+		Display/display_map.c                   \
 		Utils/parsing_utils.c                   \
 		Utils/check_utils.c                     \
 		Utils/z_utils.c                         \
+		Utils/free_utils.c                      \
 		../Get_next_line/get_next_line.c        \
 		../Get_next_line/get_next_line_utils.c
 
@@ -62,7 +64,7 @@ MLX_LNK	= -L ./mlx -l mlx -I /usr/X11/include -framework OpenGL -framework AppKi
 
 # Flags
 CC = gcc $(CFLAGS)
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -ofast -o3
 
 all: obj $(FT_LIB) $(GLIB_LIB) $(MLX_LIB) $(NAME)
 
@@ -73,6 +75,7 @@ obj:
 	@mkdir -p $(OBJ_PATH)/parsing
 	@mkdir -p $(OBJ_PATH)/vectors
 	@mkdir -p $(OBJ_PATH)/convert
+	@mkdir -p $(OBJ_PATH)/display
 	@echo "$(SUCCESS)Objects folder created successfully$(NOC)"
 
 $(OBJ_PATH)%.o:$(SRC_PATH)%.c

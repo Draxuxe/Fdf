@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 11:49:06 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/13 14:31:46 by lfilloux         ###   ########.fr       */
+/*   Updated: 2021/12/17 15:47:12 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,13 @@ t_vec3	**join_vectors(t_vec3 **vectors, t_vec3 **c, t_map *map)
 	size_t	i;
 	size_t	j;
 
+	if (!vectors || !c)
+		return (NULL);
 	i = -1;
 	j = vec_length(vectors);
 	joined = (t_vec3 **)malloc(sizeof(t_vec3) * (j + vec_length(c) + 1));
 	if (!joined)
-	{
-		free (joined);
-		exit (EXIT_FAILURE);
-	}
+		return (NULL);
 	while (vectors[++i])
 		joined[i] = vectors[i];
 	i = -1;

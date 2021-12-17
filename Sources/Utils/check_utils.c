@@ -6,11 +6,34 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:55:49 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/13 16:03:00 by lfilloux         ###   ########.fr       */
+/*   Updated: 2021/12/17 14:51:42 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/fdf.h"
+
+short	check_arg(int ac, char **av)
+{
+	if (ac != 2)
+	{
+		errno = 22;
+		perror ("Wrong number of arguments");
+		return (0);
+	}
+	else if (!existing_fd(av[1]))
+	{
+		errno = 22;
+		perror ("Nothing turned in");
+		return (0);
+	}
+	else if (!check_fd(av[1]))
+	{
+		errno = 22;
+		perror ("Wrong file descriptor type");
+		return (0);
+	}
+	return (1);
+}
 
 short	check_fd(char *filename)
 {

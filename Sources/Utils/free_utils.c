@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 09:31:55 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/17 17:41:34 by lfilloux         ###   ########.fr       */
+/*   Created: 2021/12/17 17:45:31 by lfilloux          #+#    #+#             */
+/*   Updated: 2021/12/17 17:54:38 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/fdf.h"
+#include "../../Includes/fdf.h"
 
-int	main(int ac, char **av)
+void	free_all(t_map	*map)
 {
-	t_fdf	fdf;
+	size_t	i;
 
-	if (!check_arg(ac, av))
-		return (-1);
-	fdf.map = ft_parse_map(av[1]);
-	display_map(&fdf);
-	return (0);
+	i = 0;
+	while (map->vectors[i])
+	{
+		free(map->vectors[i]);
+		i ++;
+	}
+	i = 0;
+	while (map->coords[i])
+	{
+		free (map->coords[i]);
+		i ++;
+	}
+	free(map->vectors);
+	free (map->coords);
+	free (map);
 }

@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:28:05 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/16 17:32:56 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:46:59 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,36 @@
 # include "../Libft/libft.h"
 
 /* Struct map */
+
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}				t_img;
+
+typedef struct s_window
+{
+	void	*mlx;
+	void	*win;
+	char	*title;
+	int		width;
+	int		height;
+	t_img	img;
+}			t_window;
+
+typedef struct s_camera
+{
+	int		zoom;
+	double	alpha;
+	double	beta;
+	double	gamma;
+	int		x_offset;
+	int		y_offset;
+	int		z_divider;
+}			t_camera;
 
 typedef struct s_vec3
 {
@@ -47,6 +77,14 @@ typedef struct s_map
 	t_point	**coords;
 }				t_map;
 
+typedef struct s_fdf
+{
+	t_window	window;
+	t_map		*map;
+	t_camera	*camera;
+	char		projection;
+}				t_fdf;
+
 /* Fonction sources */
 
 t_map	*ft_parse_map(char *filename);
@@ -63,5 +101,8 @@ int		ft_atoi_base(char *s);
 void	verify_vec(t_vec3 *v);
 size_t	vec_length(t_vec3 **a);
 void	convert_vec3(t_map **map);
+short	check_arg(int ac, char **av);
+void	display_map(t_fdf *fdf);
+void	free_all(t_map	*map);
 
 #endif
