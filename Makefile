@@ -97,6 +97,7 @@ $(NAME): $(OBJ)
 	@echo "$(INFO)Building $(NAME)...$(NOC)"
 	@$(CC) $(OBJ) $(FT_LNK) $(GLIB_LNK) $(MLX_LNK) -o $@
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
+	@echo "				$(VIOLET)$(BOLD)$(UNDERLINE)$(NAME) Ready to be launch!$(NOC)"
 
 clean:
 	@echo "$(INFO)Deleting .o files...$(NOC)"
