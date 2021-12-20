@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:28:05 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/17 17:46:59 by lfilloux         ###   ########.fr       */
+/*   Updated: 2021/12/20 14:59:08 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <errno.h>
 # include <mlx.h>
+# include "color.h"
 # include "../Get_next_line/get_next_line.h"
 # include "../Libft/libft.h"
 
@@ -63,6 +64,12 @@ typedef struct s_vec3
 	int	color;
 }				t_vec3;
 
+typedef struct s_vec2
+{
+	int	x;
+	int	y;
+}				t_vec2;
+
 typedef struct s_point
 {
 	int		z;
@@ -104,5 +111,13 @@ void	convert_vec3(t_map **map);
 short	check_arg(int ac, char **av);
 void	display_map(t_fdf *fdf);
 void	free_all(t_map	*map);
+t_vec2	v2f(int x, int y);
+int		get_index(int x, int y, int width);
+t_vec3	new_point(int x, int y, t_map *map);
+t_vec2	projection(t_vec3 point, t_fdf fdf);
+void	print_image(t_fdf *fdf);
+int		degree_to_rad(int degree);
+t_vec2	get_sign(t_vec2 a, t_vec2 b);
+t_vec2	vec2_diff(t_vec2 a, t_vec2 b);
 
 #endif

@@ -6,11 +6,20 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:25:31 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/17 15:49:51 by lfilloux         ###   ########.fr       */
+/*   Updated: 2021/12/20 11:13:20 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/fdf.h"
+
+t_vec2	v2f(int x, int y)
+{
+	t_vec2	v;
+
+	v.x = x;
+	v.y = y;
+	return (v);
+}
 
 static t_vec3	*create_vector(int x, int y, int z, int color)
 {

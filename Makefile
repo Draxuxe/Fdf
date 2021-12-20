@@ -31,10 +31,13 @@ SRC_NAME = main.c                               \
 		Vectors/vectors.c                       \
 		Convert/convert.c                       \
 		Display/display_map.c                   \
+		Display/print_image.c                   \
+		Display/projection.c                    \
 		Utils/parsing_utils.c                   \
 		Utils/check_utils.c                     \
 		Utils/z_utils.c                         \
 		Utils/free_utils.c                      \
+		Utils/draw_utils.c                      \
 		../Get_next_line/get_next_line.c        \
 		../Get_next_line/get_next_line_utils.c
 
@@ -56,12 +59,6 @@ MLX_LIB	= $(addprefix $(MLX),libmlx.a)
 MLX_INC	= -I ./mlx
 MLX_LNK	= -L ./mlx -l mlx -I /usr/X11/include -framework OpenGL -framework AppKit
 
-# GLib
-#GLIB		= ./glib/
-#GLIB_LIB	= $(addprefix $(GLIB), libg.a)
-#GLIB_INC	= -I ./glib/includes/
-#GLIB_LNK	= -L ./glib -l g
-
 # Flags
 CC = gcc $(CFLAGS)
 CFLAGS = -Wall -Wextra -Werror -ofast -o3
@@ -80,11 +77,6 @@ obj:
 
 $(OBJ_PATH)%.o:$(SRC_PATH)%.c
 	@$(CC) $(CFLAGS) $(MLX_INC) $(GLIB_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
-
-#$(GLIB_LIB):
-#	@echo "$(INFO)Building graphic library...$(NOC)"
-#	@make -C $(GLIB)
-#	@echo "$(SUCCESS)Graphic library built successfully!"
 
 $(FT_LIB):
 	@echo "$(INFO)Building libft library...$(NOC)"
@@ -109,9 +101,6 @@ clean:
 	@echo "$(INFO)Deleting libft files..."
 	@make -C $(FT) clean
 	@echo "$(SUCCESS)Libft files deleted successfully!$(NOC)"
-#	@echo "$(INFO)Deleting graphic library files..."
-#	@make -C $(GLIB) clean
-#	@echo "$(SUCCESS)Graphic library files deleted successfully!"
 	@echo "$(INFO)Deleting minilibx files..."
 	@make -C $(MLX) clean
 	@echo "$(SUCCESS)Minilibx files deleted successfully!$(NOC)"
@@ -121,7 +110,6 @@ fclean: clean
 	@rm -rf $(NAME)
 	@echo "$(SUCCESS)$(NAME) deleted successfully!$(NOC)"
 	@make -C $(FT) fclean
-#	@make -C $(GLIB) fclean
 
 re: fclean all
 

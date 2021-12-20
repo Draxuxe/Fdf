@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:39:26 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/17 17:53:31 by lfilloux         ###   ########.fr       */
+/*   Updated: 2021/12/20 11:44:54 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	rotate_infinity(void *f)
 
 	fdf = (t_fdf *) f;
 	fdf->camera->gamma += 0.05;
-	//render(fdf);
+	print_image(fdf);
 	usleep(100000);
 	return (0);
 }
