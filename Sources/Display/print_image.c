@@ -6,25 +6,11 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 10:57:30 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/20 14:57:33 by lfilloux         ###   ########.fr       */
+/*   Updated: 2021/12/23 13:54:33 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static void	draw_line(t_window *window, t_vec2 a, t_vec2 b)
-{
-	t_vec2	delta;
-	t_vec2	sign;
-	t_vec2	current;
-	int		error[2];
-
-	delta = vec2_diff(a, b);
-	sign = get_sign(a, b);
-	error[0] = delta.x + delta.y;
-	current = a;
-	while ()
-}
 
 static void	draw_pixel(t_window *window, t_vec2 v, int color)
 {
@@ -42,6 +28,28 @@ static void	draw_pixel(t_window *window, t_vec2 v, int color)
 		else
 			*pixel++ = (color >> (image->bpp - 8 - i)) & 0xFF;
 		i -= 8;
+	}
+}
+/*
+static void	draw_line(t_window *window, t_vec2 a, t_vec2 b)
+{
+	t_vec2	delta;
+	t_vec2	sign;
+	t_vec2	current;
+	int		error[2];
+
+	delta = vec2_diff(a, b);
+	sign = get_sign(a, b);
+	error[0] = delta.x + delta.y;
+	current = a;
+	while (current.x != b.x && current.y != b.y)
+	{
+		draw_pixel(window, current, 0);
+		error[1] = 2 * error[0];
+		if (error[1] >= delta.y)
+			vec_add(current, b.x, 0);
+		else
+			vec_add(current, 0, b.y);
 	}
 }
 
@@ -70,7 +78,7 @@ static void	draw_lines(t_fdf fdf)
 		}
 		y++;
 	}
-}
+}*/
 
 static void	clear_image(t_fdf *fdf)
 {
@@ -93,7 +101,7 @@ static void	clear_image(t_fdf *fdf)
 void	print_image(t_fdf *fdf)
 {
 	clear_image(fdf);
-	draw_lines(*fdf);
-	mlx_put_image_to_window(fdf->window.mlx,
-		fdf->window.win, fdf->window.img.mlx_img, 0, 0);
+	//draw_lines(*fdf);
+	//mlx_put_image_to_window(fdf->window.mlx,
+	//	fdf->window.win, fdf->window.img.mlx_img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:28:05 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/20 14:59:08 by lfilloux         ###   ########.fr       */
+/*   Updated: 2021/12/23 12:26:57 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <errno.h>
+# include <math.h>
 # include <mlx.h>
 # include "color.h"
 # include "../Get_next_line/get_next_line.h"
@@ -109,7 +110,7 @@ void	verify_vec(t_vec3 *v);
 size_t	vec_length(t_vec3 **a);
 void	convert_vec3(t_map **map);
 short	check_arg(int ac, char **av);
-void	display_map(t_fdf *fdf);
+void	display_map(t_fdf fdf);
 void	free_all(t_map	*map);
 t_vec2	v2f(int x, int y);
 int		get_index(int x, int y, int width);
@@ -119,5 +120,6 @@ void	print_image(t_fdf *fdf);
 int		degree_to_rad(int degree);
 t_vec2	get_sign(t_vec2 a, t_vec2 b);
 t_vec2	vec2_diff(t_vec2 a, t_vec2 b);
+t_vec2	vec_add(t_vec2 vec, int x, int y);
 
 #endif
