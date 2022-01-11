@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:28:05 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/23 12:26:57 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/11 14:40:30 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <math.h>
 # include <mlx.h>
 # include "color.h"
+# include "controls.h"
 # include "../Get_next_line/get_next_line.h"
 # include "../Libft/libft.h"
 
@@ -69,6 +70,7 @@ typedef struct s_vec2
 {
 	int	x;
 	int	y;
+	int	color;
 }				t_vec2;
 
 typedef struct s_point
@@ -81,6 +83,8 @@ typedef struct s_map
 {
 	int		width;
 	int		height;
+	int		z_max;
+	int		z_min;
 	t_vec3	**vectors;
 	t_point	**coords;
 }				t_map;
@@ -116,10 +120,14 @@ t_vec2	v2f(int x, int y);
 int		get_index(int x, int y, int width);
 t_vec3	new_point(int x, int y, t_map *map);
 t_vec2	projection(t_vec3 point, t_fdf fdf);
-void	print_image(t_fdf *fdf);
+int		print_image(t_fdf *fdf);
 int		degree_to_rad(int degree);
 t_vec2	get_sign(t_vec2 a, t_vec2 b);
 t_vec2	vec2_diff(t_vec2 a, t_vec2 b);
 t_vec2	vec_add(t_vec2 vec, int x, int y);
+void	init_settings(t_fdf *fdf);
+void	stop_render(t_window *window);
+int		get_point_color(t_point *point, t_fdf *fdf);
+int		get_fade_color(t_vec2 current, t_vec2 start, t_vec2 end, t_vec2 delta);
 
 #endif

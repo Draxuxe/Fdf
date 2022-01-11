@@ -30,6 +30,7 @@ SRC_NAME = main.c                               \
 		Parsing/parser.c                        \
 		Vectors/vectors.c                       \
 		Convert/convert.c                       \
+		Init/init_settings.c                    \
 		Display/display_map.c                   \
 		Display/print_image.c                   \
 		Display/projection.c                    \
@@ -38,6 +39,7 @@ SRC_NAME = main.c                               \
 		Utils/z_utils.c                         \
 		Utils/free_utils.c                      \
 		Utils/draw_utils.c                      \
+		Utils/color_utils.c                     \
 		../Get_next_line/get_next_line.c        \
 		../Get_next_line/get_next_line_utils.c
 
@@ -61,7 +63,8 @@ MLX_LNK	= -L ./mlx -l mlx -I /usr/X11/include -framework OpenGL -framework AppKi
 
 # Flags
 CC = gcc $(CFLAGS)
-CFLAGS = -Wall -Wextra -Werror -ofast -o3
+CFLAGS = -ofast -o3
+# -Wall -Wextra -Werror
 
 all: obj $(FT_LIB) $(GLIB_LIB) $(MLX_LIB) $(NAME)
 
@@ -73,6 +76,7 @@ obj:
 	@mkdir -p $(OBJ_PATH)/vectors
 	@mkdir -p $(OBJ_PATH)/convert
 	@mkdir -p $(OBJ_PATH)/display
+	@mkdir -p $(OBJ_PATH)/init
 	@echo "$(SUCCESS)Objects folder created successfully$(NOC)"
 
 $(OBJ_PATH)%.o:$(SRC_PATH)%.c

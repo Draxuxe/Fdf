@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:42:27 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/20 14:50:51 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:41:26 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ t_vec3	new_point(int x, int y, t_map *map)
 	t_vec3	point;
 	int		i;
 
-	i = 0;
 	i = get_index(x, y, map->width);
 	point.x = x;
 	point.y = y;
 	point.z = map->coords[i]->z;
-	point.color = 0;
 	return (point);
 }
 
@@ -42,15 +40,11 @@ t_vec2	projection(t_vec3 point, t_fdf fdf)
 {
 	t_vec2	vector;
 
-	fdf.camera->zoom = 1;
 	point.x *= fdf.camera->zoom;
 	point.y *= fdf.camera->zoom;
-	point.z = fdf.camera->zoom / fdf.camera->z_divider;
-	point.x = (fdf.map->width * fdf.camera->zoom) / 2;
-	point.y = (fdf.map->height * fdf.camera->zoom) / 2;
-	//rotate_x(&point, fdf.camera->alpha);
-	//rotate_y(&point, fdf.camera->beta);
-	//rotate_z(&point, fdf.camera->gamma);
+	point.z *= fdf.camera->zoom / fdf.camera->z_divider;
+	point.x -= (fdf.map->width * fdf.camera->zoom) / 2;
+	point.y -= (fdf.map->height * fdf.camera->zoom) / 2;
 	if (fdf.projection == 'I')
 		vector = isometric_projection(point);
 	else

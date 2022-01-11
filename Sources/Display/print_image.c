@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 10:57:30 by lfilloux          #+#    #+#             */
-/*   Updated: 2021/12/23 13:54:33 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/11 15:48:39 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,20 @@
 
 static void	draw_pixel(t_window *window, t_vec2 v, int color)
 {
-	char	*pixel;
 	int		i;
 	t_img	*image;
 
 	image = &window->img;
-	i = image->bpp - 8;
-	pixel = image->addr + (v.y * image->line_len + v.x * (image->bpp / 8));
-	while (i >= 0)
-	{
-		if (image->endian != 0)
-			*pixel++ = (color >> i) & 0xFF;
-		else
-			*pixel++ = (color >> (image->bpp - 8 - i)) & 0xFF;
-		i -= 8;
-	}
+	if (!(v.x >= 0 && v.x <= window->width)
+		|| !(v.y >= 0 && v.y <= window->height))
+		return ;
+	i = (v.x * image->bpp / 8) + (v.y * image->line_len);
+	image->addr[i] = color;
+	image->addr[++i] = color >> 8;
+	image->addr[++i] = color >> 16;
 }
-/*
-static void	draw_line(t_window *window, t_vec2 a, t_vec2 b)
+
+static void	draw_line(t_window *window, t_vec2 a, t_vec2 b, int color)
 {
 	t_vec2	delta;
 	t_vec2	sign;
@@ -44,12 +40,18 @@ static void	draw_line(t_window *window, t_vec2 a, t_vec2 b)
 	current = a;
 	while (current.x != b.x && current.y != b.y)
 	{
-		draw_pixel(window, current, 0);
+		draw_pixel(window, current, color);
 		error[1] = 2 * error[0];
 		if (error[1] >= delta.y)
-			vec_add(current, b.x, 0);
-		else
-			vec_add(current, 0, b.y);
+		{
+			error[0] += delta.y;
+			current = vec_add(current, sign.x, 0);
+		}
+		if (error[1] <= delta.x)
+		{
+			error[0] += delta.x;
+			current = vec_add(current, 0, sign.y);
+		}
 	}
 }
 
@@ -57,6 +59,7 @@ static void	draw_lines(t_fdf fdf)
 {
 	int		x;
 	int		y;
+	int		color;
 	t_point	*point;
 
 	y = 0;
@@ -66,19 +69,20 @@ static void	draw_lines(t_fdf fdf)
 		while (x < fdf.map->width)
 		{
 			point = fdf.map->coords[get_index(x, y, fdf.map->width)];
+			color = get_point_color(point, &fdf);
 			if (x != fdf.map->width - 1)
 				draw_line(&fdf.window, projection(new_point(x, y,
 							fdf.map), fdf), projection(new_point(x + 1, y,
-							fdf.map), fdf));
+							fdf.map), fdf), color);
 			if (y != fdf.map->height - 1)
 				draw_line(&fdf.window, projection(new_point(x, y,
-							fdf.map), fdf), projection(new_point(x + 1, y,
-							fdf.map), fdf));
+							fdf.map), fdf), projection(new_point(x, y + 1,
+							fdf.map), fdf), color);
 			x++;
 		}
 		y++;
 	}
-}*/
+}
 
 static void	clear_image(t_fdf *fdf)
 {
@@ -98,10 +102,11 @@ static void	clear_image(t_fdf *fdf)
 	}
 }
 
-void	print_image(t_fdf *fdf)
+int	print_image(t_fdf *fdf)
 {
 	clear_image(fdf);
-	//draw_lines(*fdf);
-	//mlx_put_image_to_window(fdf->window.mlx,
-	//	fdf->window.win, fdf->window.img.mlx_img, 0, 0);
+	draw_lines(*fdf);
+	mlx_put_image_to_window(fdf->window.mlx,
+		fdf->window.win, fdf->window.img.mlx_img, 0, 0);
+	return (0);
 }
