@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 10:57:30 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/11 15:48:39 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/12 17:00:12 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 static void	draw_pixel(t_window *window, t_vec2 v, int color)
 {
 	int		i;
-	t_img	*image;
+	t_img	*img;
 
-	image = &window->img;
-	if (!(v.x >= 0 && v.x <= window->width)
-		|| !(v.y >= 0 && v.y <= window->height))
+	img = &window->img;
+	if (!(v.x > 0 && v.x < window->width && v.y > 0 && v.y < window->height))
 		return ;
-	i = (v.x * image->bpp / 8) + (v.y * image->line_len);
-	image->addr[i] = color;
-	image->addr[++i] = color >> 8;
-	image->addr[++i] = color >> 16;
+	i = (v.x * img->bpp / 8) + (v.y * img->line_len);
+	img->addr[i] = color;
+	img->addr[++i] = color >> 8;
+	img->addr[++i] = color >> 16;
 }
 
 static void	draw_line(t_window *window, t_vec2 a, t_vec2 b, int color)
@@ -84,7 +83,7 @@ static void	draw_lines(t_fdf fdf)
 	}
 }
 
-static void	clear_image(t_fdf *fdf)
+void	clear_image(t_fdf *fdf)
 {
 	int	x;
 	int	y;

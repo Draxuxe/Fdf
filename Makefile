@@ -31,6 +31,9 @@ SRC_NAME = main.c                               \
 		Vectors/vectors.c                       \
 		Convert/convert.c                       \
 		Init/init_settings.c                    \
+		Init/init_controls.c                    \
+		Init/init_keys.c                        \
+		Maths/rotations.c                       \
 		Display/display_map.c                   \
 		Display/print_image.c                   \
 		Display/projection.c                    \
@@ -77,6 +80,7 @@ obj:
 	@mkdir -p $(OBJ_PATH)/convert
 	@mkdir -p $(OBJ_PATH)/display
 	@mkdir -p $(OBJ_PATH)/init
+	@mkdir -p $(OBJ_PATH)/maths
 	@echo "$(SUCCESS)Objects folder created successfully$(NOC)"
 
 $(OBJ_PATH)%.o:$(SRC_PATH)%.c

@@ -6,13 +6,11 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 10:02:30 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/11 12:25:21 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/12 15:07:26 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/fdf.h"
-#include <stdio.h>
-#include <time.h>
 
 static t_map	*create_map(void)
 {
@@ -63,6 +61,8 @@ static t_map	*get_map(int fd)
 	char	*line;
 
 	line = get_next_line(fd);
+	if (!line)
+		return (NULL);
 	map = create_map();
 	map->height = 0;
 	vectors = parse_line(line, map->height);

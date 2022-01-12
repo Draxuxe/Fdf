@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_map.c                                      :+:      :+:    :+:   */
+/*   init_keys.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/17 16:39:26 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/12 14:28:48 by lfilloux         ###   ########.fr       */
+/*   Created: 2022/01/12 11:45:17 by lfilloux          #+#    #+#             */
+/*   Updated: 2022/01/12 11:50:47 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/fdf.h"
 
-void	display_map(t_fdf fdf)
+void	register_loop_hook(t_window *window, int (*f)(), void *param)
 {
-	init_controls(&fdf);
-	mlx_loop(fdf.window.mlx);
-	stop_render(&fdf.window);
-	free_all(fdf.map);
+	mlx_loop_hook(window->mlx, f, param);
+}
+
+void	register_key_hook(t_window *window, int (*f)(), void *param)
+{
+	mlx_key_hook(window->win, f, param);
 }

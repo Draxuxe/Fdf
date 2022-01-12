@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:28:05 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/11 14:40:30 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/12 15:43:16 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,13 @@ void	init_settings(t_fdf *fdf);
 void	stop_render(t_window *window);
 int		get_point_color(t_point *point, t_fdf *fdf);
 int		get_fade_color(t_vec2 current, t_vec2 start, t_vec2 end, t_vec2 delta);
+int		close_window(t_fdf *fdf);
+void	init_controls(t_fdf *fdf);
+void	register_loop_hook(t_window *window, int (*f)(), void *param);
+void	clear_image(t_fdf *fdf);
+void	register_key_hook(t_window *window, int (*f)(), void *param);
+void	rotate_y(t_vec3 *vec, double beta);
+void	rotate_x(t_vec3 *vec, double alpha);
+void	rotate_z(t_vec3 *vec, double gamma);
 
 #endif

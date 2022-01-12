@@ -6,31 +6,33 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:41:38 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/11 15:38:54 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/12 16:05:13 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTROLS_H
 # define CONTROLS_H
 
-# define UP 38
-# define LEFT 37
-# define RIGHT 39
-# define DOWN 40
+# define UP 126
+# define LEFT 123
+# define RIGHT 124
+# define DOWN 125
 
-# define ESC 27
+# define P 35
 
-# define ZOOM_IN 107
-# define ZOOM_OUT 109
+# define ESC 53
 
-# define K1 87 //W
-# define K2 83 //S
-# define K3 65 //A
-# define K4 68 //D
+# define ZOOM_IN 4
+# define ZOOM_OUT 5
 
-# define K5 90 //Z
-# define K6 88 //X
-# define K7 67 //C
-# define K8 86 //V
+# define W 18
+# define S 19
+# define A 20
+# define D 21
+# define Z 22
+# define X 23
+
+# define PLUS 24
+# define MINUS 27
 
 #endif

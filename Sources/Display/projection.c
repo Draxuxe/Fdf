@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:42:27 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/10 19:41:26 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/12 16:45:36 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ t_vec2	projection(t_vec3 point, t_fdf fdf)
 	point.z *= fdf.camera->zoom / fdf.camera->z_divider;
 	point.x -= (fdf.map->width * fdf.camera->zoom) / 2;
 	point.y -= (fdf.map->height * fdf.camera->zoom) / 2;
+	rotate_x(&point, fdf.camera->alpha);
+	rotate_y(&point, fdf.camera->beta);
+	rotate_z(&point, fdf.camera->gamma);
 	if (fdf.projection == 'I')
 		vector = isometric_projection(point);
 	else
