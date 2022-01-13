@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:25:31 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/12 15:33:14 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:43:29 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,6 @@ static t_vec3	*create_vector(int x, int y, int z, int color)
 	newvec->z = z;
 	newvec->color = color;
 	return (newvec);
-}
-
-static void	free_split(char **split)
-{
-	size_t	i;
-
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-	{
-		free (split[i]);
-		i ++;
-	}
-	free (split);
 }
 
 void	verify_vec(t_vec3 *v)

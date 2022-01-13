@@ -66,8 +66,7 @@ MLX_LNK	= -L ./mlx -l mlx -I /usr/X11/include -framework OpenGL -framework AppKi
 
 # Flags
 CC = gcc $(CFLAGS)
-CFLAGS = -ofast -o3
-# -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -ofast -o3
 
 all: obj $(FT_LIB) $(GLIB_LIB) $(MLX_LIB) $(NAME)
 
@@ -96,7 +95,7 @@ $(MLX_LIB):
 	@make -C $(MLX)
 	@echo "$(SUCCESS)Minilibx library built successfully!$(NOC)"
 
-$(NAME): $(OBJ)
+$(NAME):obj $(FT_LIB) $(MLX_LIB) $(OBJ)
 	@echo "$(INFO)Building $(NAME)...$(NOC)"
 	@$(CC) $(OBJ) $(FT_LNK) $(GLIB_LNK) $(MLX_LNK) -o $@
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"

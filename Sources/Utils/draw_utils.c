@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:34:57 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/10 17:33:14 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/13 14:53:22 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	get_index(int x, int y, int width)
 	return (y * width + x);
 }
 
-int	degree_to_rad(int degree)
+double	degree_to_rad(int degree)
 {
-	int	rad;
+	double	rad;
 
 	rad = degree * 3.14159265F / 180.0F;
 	return (rad);

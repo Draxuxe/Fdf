@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 10:02:30 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/12 15:07:26 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/13 14:40:34 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static t_map	*create_map(void)
 		free(map);
 		exit(EXIT_FAILURE);
 	}
+	map->z_max = 0;
+	map->z_min = 0;
 	return (map);
 }
 

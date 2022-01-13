@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 17:45:31 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/12 11:44:50 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:43:41 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ void	free_all(t_map	*map)
 	free(map->vectors);
 	free (map->coords);
 	free (map);
+}
+
+void	free_split(char **split)
+{
+	size_t	i;
+
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free (split[i]);
+		i ++;
+	}
+	free (split);
 }
 
 int	close_window(t_fdf *fdf)

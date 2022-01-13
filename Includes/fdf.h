@@ -6,12 +6,14 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:28:05 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/12 15:43:16 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:45:39 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+/* LIBRAIRIES */
 
 # include <stdlib.h>
 # include <fcntl.h>
@@ -26,8 +28,8 @@
 # include "../Get_next_line/get_next_line.h"
 # include "../Libft/libft.h"
 
-/* Struct map */
-
+/* STRUCTS */
+	/*Image*/
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -36,7 +38,7 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }				t_img;
-
+	/*Window*/
 typedef struct s_window
 {
 	void	*mlx;
@@ -46,7 +48,7 @@ typedef struct s_window
 	int		height;
 	t_img	img;
 }			t_window;
-
+	/*Camera*/
 typedef struct s_camera
 {
 	int		zoom;
@@ -57,7 +59,7 @@ typedef struct s_camera
 	int		y_offset;
 	int		z_divider;
 }			t_camera;
-
+	/*3D Vector*/
 typedef struct s_vec3
 {
 	int	x;
@@ -65,20 +67,20 @@ typedef struct s_vec3
 	int	z;
 	int	color;
 }				t_vec3;
-
+	/*2D Vector*/
 typedef struct s_vec2
 {
 	int	x;
 	int	y;
 	int	color;
 }				t_vec2;
-
+	/*Point*/
 typedef struct s_point
 {
 	int		z;
 	int		color;
 }				t_point;
-
+	/*Map*/
 typedef struct s_map
 {
 	int		width;
@@ -88,7 +90,7 @@ typedef struct s_map
 	t_vec3	**vectors;
 	t_point	**coords;
 }				t_map;
-
+	/*Project Struct*/
 typedef struct s_fdf
 {
 	t_window	window;
@@ -97,45 +99,57 @@ typedef struct s_fdf
 	char		projection;
 }				t_fdf;
 
-/* Fonction sources */
-
+/* SOURCES */
+	/*PARSING*/
 t_map	*ft_parse_map(char *filename);
-
-/* Fonctions utiles */
-
+	/*UTILS*/
+		/*Checks*/
 short	check_fd(char *filename);
 short	existing_fd(char *filename);
-t_vec3	**join_vectors(t_vec3 **vectors, t_vec3 **c, t_map *map);
-t_vec3	*get_z_vec(int x, int y, char *s);
-t_vec3	**join_vectors(t_vec3 **vectors, t_vec3 **c, t_map *map);
-size_t	split_size(char **s);
-int		ft_atoi_base(char *s);
-void	verify_vec(t_vec3 *v);
-size_t	vec_length(t_vec3 **a);
-void	convert_vec3(t_map **map);
 short	check_arg(int ac, char **av);
-void	display_map(t_fdf fdf);
-void	free_all(t_map	*map);
-t_vec2	v2f(int x, int y);
-int		get_index(int x, int y, int width);
-t_vec3	new_point(int x, int y, t_map *map);
-t_vec2	projection(t_vec3 point, t_fdf fdf);
-int		print_image(t_fdf *fdf);
-int		degree_to_rad(int degree);
-t_vec2	get_sign(t_vec2 a, t_vec2 b);
-t_vec2	vec2_diff(t_vec2 a, t_vec2 b);
-t_vec2	vec_add(t_vec2 vec, int x, int y);
-void	init_settings(t_fdf *fdf);
-void	stop_render(t_window *window);
+		/*Colors*/
+double	get_light(int start, int end, double percentage);
+double	get_percent(int current, int start, int end);
 int		get_point_color(t_point *point, t_fdf *fdf);
-int		get_fade_color(t_vec2 current, t_vec2 start, t_vec2 end, t_vec2 delta);
+		/*Draw*/
+int		get_index(int x, int y, int width);
+double	degree_to_rad(int degree);
+t_vec2	vec_add(t_vec2 vec, int x, int y);
+t_vec2	vec2_diff(t_vec2 a, t_vec2 b);
+t_vec2	get_sign(t_vec2 a, t_vec2 b);
+		/*Free*/
+void	free_split(char **split);
+void	free_all(t_map	*map);
 int		close_window(t_fdf *fdf);
-void	init_controls(t_fdf *fdf);
-void	register_loop_hook(t_window *window, int (*f)(), void *param);
-void	clear_image(t_fdf *fdf);
-void	register_key_hook(t_window *window, int (*f)(), void *param);
+void	stop_render(t_window *window);
+		/*Parsing*/
+size_t	vec_length(t_vec3 **a);
+size_t	split_size(char **s);
+t_vec3	**join_vectors(t_vec3 **vectors, t_vec3 **c, t_map *map);
+		/*Z (Height)*/
+int		ft_atoi_base(char *s);
+	/*VECTORS*/
+void	verify_vec(t_vec3 *v);
+t_vec2	v2f(int x, int y);
+t_vec3	*get_z_vec(int x, int y, char *s);
+	/*MATHS*/
 void	rotate_y(t_vec3 *vec, double beta);
 void	rotate_x(t_vec3 *vec, double alpha);
 void	rotate_z(t_vec3 *vec, double gamma);
+	/*CONVERT*/
+void	convert_vec3(t_map **map);
+	/*INIT*/
+void	init_settings(t_fdf *fdf);
+void	register_key_hook(t_window *window, int (*f)(), void *param);
+void	register_loop_hook(t_window *window, int (*f)(), void *param);
+void	init_controls(t_fdf *fdf);
+	/*DISPLAY*/
+void	display_map(t_fdf fdf);
+void	clear_image(t_fdf *fdf);
+t_vec2	projection(t_vec3 point, t_fdf fdf);
+int		print_image(t_fdf *fdf);
+void	draw_pixel(t_window *window, t_vec2 v, int color);
+void	draw_lines(t_fdf fdf);
+t_vec3	new_point(int x, int y, t_map *map);
 
 #endif
