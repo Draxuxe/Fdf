@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 16:22:10 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/11 13:55:07 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 13:40:19 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	isdigit_base(char c)
 static short	has_prefix(char *s)
 {
 	if (s[0] != '0')
-		return (0);
+		return (1);
 	if (s[1] == 'x' || s[1] == 'X')
 		return (1);
 	return (0);

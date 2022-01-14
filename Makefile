@@ -42,6 +42,7 @@ SRC_NAME = main.c                               \
 		Display/projection.c                    \
 		Utils/parsing_utils.c                   \
 		Utils/check_utils.c                     \
+		Utils/colors_utils.c                    \
 		Utils/z_utils.c                         \
 		Utils/free_utils.c                      \
 		Utils/draw_utils.c                      \

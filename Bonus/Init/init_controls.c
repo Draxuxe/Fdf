@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 10:05:06 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/14 10:45:17 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 14:48:12 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void	rotation_controls(int keycode, t_fdf *fdf)
 {
 	if (keycode == W)
-		fdf->camera->alpha += 0.5;
+		fdf->camera->alpha += 0.6;
 	else if (keycode == S)
-		fdf->camera->alpha -= 0.5;
+		fdf->camera->alpha -= 0.6;
 	else if (keycode == A)
-		fdf->camera->beta += 0.5;
+		fdf->camera->beta += 0.6;
 	else if (keycode == D)
-		fdf->camera->beta -= 0.5;
+		fdf->camera->beta -= 0.6;
 	else if (keycode == Z)
-		fdf->camera->gamma += 0.5;
+		fdf->camera->gamma += 0.6;
 	else if (keycode == X)
-		fdf->camera->gamma -= 0.5;
+		fdf->camera->gamma -= 0.6;
 	else if (keycode == PLUS)
 	{
 		if (fdf->camera->z_divider > 1)
@@ -76,12 +76,19 @@ static int	dispatch_keys(int keycode, t_fdf *fdf)
 	if (keycode == P)
 	{
 		if (fdf->projection == 'I')
+		{
 			fdf->projection = 'P';
+			fdf->camera->alpha = -1.5;
+			fdf->camera->beta = -1;
+			fdf->camera->gamma = 50;
+		}
 		else
+		{
 			fdf->projection = 'I';
-		fdf->camera->alpha = 0;
-		fdf->camera->beta = 0;
-		fdf->camera->gamma = 0;
+			fdf->camera->alpha = 0;
+			fdf->camera->beta = 0;
+			fdf->camera->gamma = 0;
+		}
 	}
 	rotation_controls(keycode, fdf);
 	movement_controls(keycode, fdf);

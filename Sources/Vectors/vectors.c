@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:25:31 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/13 16:43:29 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 13:40:41 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ static t_vec3	*create_vector(int x, int y, int z, int color)
 {
 	t_vec3	*newvec;
 
+	(void) color;
 	newvec = (t_vec3 *)malloc(sizeof(t_vec3));
 	if (!newvec)
 		return (NULL);
 	newvec->x = x;
 	newvec->y = y;
 	newvec->z = z;
-	newvec->color = color;
+	newvec->color = 0xFFFFFF;
 	return (newvec);
 }
 

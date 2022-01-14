@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:28:05 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/14 10:44:30 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 13:41:26 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void	stop_render(t_window *window);
 size_t	vec_length(t_vec3 **a);
 size_t	split_size(char **s);
 t_vec3	**join_vectors(t_vec3 **vectors, t_vec3 **c, t_map *map);
+		/*Colors*/
+int		get_point_color(t_point *point, t_fdf *fdf);
 		/*Z (Height)*/
 int		ft_atoi_base(char *s);
 	/*VECTORS*/
@@ -142,4 +144,5 @@ void	draw_pixel(t_window *window, t_vec2 v, int color);
 void	draw_lines(t_fdf fdf);
 t_vec3	new_point(int x, int y, t_map *map);
 
+int		get_point_color(t_point *point, t_fdf *fdf);
 #endif
