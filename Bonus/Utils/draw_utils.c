@@ -6,11 +6,11 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:34:57 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/13 17:58:23 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:44:58 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/fdf.h"
+#include "../../Includes/fdf_bonus.h"
 
 int	get_index(int x, int y, int width)
 {

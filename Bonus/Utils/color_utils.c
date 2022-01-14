@@ -6,11 +6,11 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:47:14 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/13 16:36:05 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:44:51 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/fdf.h"
+#include "../../Includes/fdf_bonus.h"
 
 double	get_percent(int current, int start, int end)
 {

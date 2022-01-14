@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_controls.c                                    :+:      :+:    :+:   */
+/*   init_keys.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 10:05:06 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/13 18:02:05 by lfilloux         ###   ########.fr       */
+/*   Created: 2022/01/12 11:45:17 by lfilloux          #+#    #+#             */
+/*   Updated: 2022/01/14 10:37:44 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/fdf.h"
+#include "../../Includes/fdf_bonus.h"
 
-static int	dispatch_keys(int keycode, t_fdf *fdf)
+void	register_loop_hook_bonus(t_window *window, int (*f)(), void *param)
 {
-	if (keycode == ESC)
-	{
-		stop_render(&fdf->window);
-		free_all(fdf->map);
-	}
-	return (0);
+	mlx_loop_hook(window->mlx, f, param);
 }
 
-void	init_controls(t_fdf *fdf)
+void	register_key_hook_bonus(t_window *window, int (*f)(), void *param)
 {
-	print_image(fdf);
-	register_key_hook(&fdf->window, dispatch_keys, fdf);
-	mlx_hook(fdf->window.win, 17, 0, close_window, fdf);
+	mlx_key_hook(window->win, f, param);
 }

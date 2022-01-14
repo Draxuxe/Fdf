@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 09:28:05 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/13 16:45:39 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:44:30 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <errno.h>
 # include <math.h>
 # include <mlx.h>
-# include "color.h"
 # include "controls.h"
 # include "../Get_next_line/get_next_line.h"
 # include "../Libft/libft.h"
@@ -107,13 +106,8 @@ t_map	*ft_parse_map(char *filename);
 short	check_fd(char *filename);
 short	existing_fd(char *filename);
 short	check_arg(int ac, char **av);
-		/*Colors*/
-double	get_light(int start, int end, double percentage);
-double	get_percent(int current, int start, int end);
-int		get_point_color(t_point *point, t_fdf *fdf);
 		/*Draw*/
 int		get_index(int x, int y, int width);
-double	degree_to_rad(int degree);
 t_vec2	vec_add(t_vec2 vec, int x, int y);
 t_vec2	vec2_diff(t_vec2 a, t_vec2 b);
 t_vec2	get_sign(t_vec2 a, t_vec2 b);
@@ -132,10 +126,6 @@ int		ft_atoi_base(char *s);
 void	verify_vec(t_vec3 *v);
 t_vec2	v2f(int x, int y);
 t_vec3	*get_z_vec(int x, int y, char *s);
-	/*MATHS*/
-void	rotate_y(t_vec3 *vec, double beta);
-void	rotate_x(t_vec3 *vec, double alpha);
-void	rotate_z(t_vec3 *vec, double gamma);
 	/*CONVERT*/
 void	convert_vec3(t_map **map);
 	/*INIT*/

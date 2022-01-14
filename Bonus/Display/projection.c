@@ -6,16 +6,22 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:42:27 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/13 18:04:08 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:35:23 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/fdf.h"
+#include "../../Includes/fdf_bonus.h"
 
 static t_vec2	isometric_projection(t_vec3 vec)
 {
 	return (v2f((vec.x - vec.y) * cos(0.523599),
 			-vec.z + (vec.x + vec.y) * sin(0.523599)));
+}
+
+static t_vec2	parallel_projection(t_vec3 vec, int angle)
+{
+	return (v2f(vec.x + cos(degree_to_rad(angle)) * vec.z,
+			vec.y + sin(degree_to_rad(angle)) * vec.z));
 }
 
 t_vec3	new_point(int x, int y, t_map *map)
@@ -39,7 +45,13 @@ t_vec2	projection(t_vec3 point, t_fdf fdf)
 	point.z *= fdf.camera->zoom / fdf.camera->z_divider;
 	point.x -= (fdf.map->width * fdf.camera->zoom) / 2;
 	point.y -= (fdf.map->height * fdf.camera->zoom) / 2;
-	vector = isometric_projection(point);
+	rotate_x(&point, fdf.camera->alpha);
+	rotate_y(&point, fdf.camera->beta);
+	rotate_z(&point, fdf.camera->gamma);
+	if (fdf.projection == 'I')
+		vector = isometric_projection(point);
+	else
+		vector = parallel_projection(point, 30);
 	vector.x += fdf.window.width / 2 + fdf.camera->x_offset;
 	vector.y += (fdf.window.height + fdf.map->height * fdf.camera->zoom)
 		/ 2 + fdf.camera->y_offset;

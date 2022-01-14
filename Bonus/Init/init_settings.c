@@ -6,11 +6,11 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 10:44:08 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/13 18:07:50 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:37:50 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/fdf.h"
+#include "../../Includes/fdf_bonus.h"
 
 static void	init_img(t_window *window)
 {
@@ -59,7 +59,7 @@ static void	init_window(t_fdf *fdf)
 			fdf->window.height, fdf->window.title);
 }
 
-void	init_settings(t_fdf *fdf)
+void	init_settings_bonus(t_fdf *fdf)
 {
 	init_conf(fdf);
 	init_window(fdf);

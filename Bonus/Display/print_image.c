@@ -6,11 +6,11 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 10:57:30 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/13 18:19:41 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:31:59 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/fdf.h"
+#include "../../Includes/fdf_bonus.h"
 
 void	draw_pixel(t_window *window, t_vec2 v, int color)
 {
@@ -89,7 +89,7 @@ void	draw_lines(t_fdf fdf)
 		while (x < fdf.map->width)
 		{
 			point = fdf.map->coords[get_index(x, y, fdf.map->width)];
-			color = 0xFFFFFF;
+			color = get_point_color(point, &fdf);
 			if (x != fdf.map->width - 1)
 				draw_line_x(x, y, fdf, color);
 			if (y != fdf.map->height - 1)

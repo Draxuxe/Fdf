@@ -6,11 +6,11 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:39:26 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/13 17:59:01 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 10:45:06 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Includes/fdf.h"
+#include "../../Includes/fdf_bonus.h"
 
 void	clear_image(t_fdf *fdf)
 {
@@ -41,7 +41,7 @@ int	print_image(t_fdf *fdf)
 
 void	display_map(t_fdf fdf)
 {
-	init_controls(&fdf);
+	init_controls_bonus(&fdf);
 	mlx_loop(fdf.window.mlx);
 	stop_render(&fdf.window);
 	free_all(fdf.map);
