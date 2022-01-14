@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 11:42:27 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/14 10:35:23 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:10:33 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ static t_vec2	parallel_projection(t_vec3 vec, int angle)
 {
 	return (v2f(vec.x + cos(degree_to_rad(angle)) * vec.z,
 			vec.y + sin(degree_to_rad(angle)) * vec.z));
+}
+
+void	reset_projection(t_fdf *fdf, double a, double b, double g)
+{
+	if (fdf->projection == 'P')
+	{
+		fdf->camera->alpha = a;
+		fdf->camera->beta = b;
+		fdf->camera->gamma = g;
+	}
+	else
+	{
+		fdf->camera->alpha = a;
+		fdf->camera->beta = b;
+		fdf->camera->gamma = g;
+	}
 }
 
 t_vec3	new_point(int x, int y, t_map *map)

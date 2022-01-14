@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 10:05:06 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/14 14:48:12 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/14 16:10:26 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,12 @@ static int	dispatch_keys(int keycode, t_fdf *fdf)
 		if (fdf->projection == 'I')
 		{
 			fdf->projection = 'P';
-			fdf->camera->alpha = -1.5;
-			fdf->camera->beta = -1;
-			fdf->camera->gamma = 50;
+			reset_projection(fdf, -1.5, -1, 50);
 		}
 		else
 		{
 			fdf->projection = 'I';
-			fdf->camera->alpha = 0;
-			fdf->camera->beta = 0;
-			fdf->camera->gamma = 0;
+			reset_projection(fdf, 0, 0, 0);
 		}
 	}
 	rotation_controls(keycode, fdf);
