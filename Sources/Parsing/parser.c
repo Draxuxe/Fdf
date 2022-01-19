@@ -6,7 +6,7 @@
 /*   By: lfilloux <lfilloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 10:02:30 by lfilloux          #+#    #+#             */
-/*   Updated: 2022/01/13 17:10:17 by lfilloux         ###   ########.fr       */
+/*   Updated: 2022/01/19 13:41:16 by lfilloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_vec3	**parse_line(char *line, int y)
 	vectors = malloc(sizeof(t_vec3 *) * (split_size(s) + 1));
 	if (!vectors)
 		return (NULL);
-	while (s[i])
+	while (s[i] && ft_strncmp(s[i], "\n", 1))
 	{
 		tmp = get_z_vec(i, y, s[i]);
 		verify_vec(tmp);
@@ -49,6 +49,7 @@ static t_vec3	**parse_line(char *line, int y)
 		free (s[i]);
 		i ++;
 	}
+	free(s[i]);
 	free(s);
 	free(line);
 	vectors[i] = 0;
